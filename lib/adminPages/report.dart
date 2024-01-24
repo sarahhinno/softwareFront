@@ -425,6 +425,8 @@ class _reportState extends State<report> {
             ],
           ),
         ),
+                      pw.SizedBox(height: 40),
+
         pw.Container(
           child: pw.Column(
             children: [
@@ -497,14 +499,14 @@ class _reportState extends State<report> {
                     fontWeight: FontWeight.bold,
                     color: primaryLightColor),
               ),
-              SizedBox(width: 80),
+              SizedBox(width: 60),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   primary: primaryColor, // Set the background color here
                 ),
                 onPressed: saveFile,
                 child: Text(
-                  'حـفـظ الـتـقـريـر ',
+                  ' pdf تـحـويـل إلـى  ',
                   style: TextStyle(
                       fontFamily: 'myfont',
                       fontSize: 15,
