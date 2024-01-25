@@ -65,7 +65,7 @@ class _chartOneState extends State<chartOne> {
 
       LineChartBarData lineChartBarData = LineChartBarData(
         spots: spots,
-        isCurved: true,
+        isCurved: false,
         barWidth: 3,
         color: lineColors[i],
       );
