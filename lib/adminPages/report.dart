@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
 import 'package:software/theme.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'dart:io';
 import 'dart:typed_data';
 import 'package:path_provider/path_provider.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:document_file_save_plus/document_file_save_plus.dart';
-import 'package:pdf/pdf.dart' as pdfLib;
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:open_file/open_file.dart';
 
@@ -425,8 +421,7 @@ class _reportState extends State<report> {
             ],
           ),
         ),
-                      pw.SizedBox(height: 40),
-
+        pw.SizedBox(height: 40),
         pw.Container(
           child: pw.Column(
             children: [
@@ -491,6 +486,7 @@ class _reportState extends State<report> {
           backgroundColor: primaryColor,
           title: Row(
             children: <Widget>[
+              Spacer(),
               Text(
                 'الـتـقـريـر الـطـبـي',
                 style: TextStyle(
@@ -499,21 +495,22 @@ class _reportState extends State<report> {
                     fontWeight: FontWeight.bold,
                     color: primaryLightColor),
               ),
-              SizedBox(width: 60),
+        SizedBox(width: 130),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   primary: primaryColor, // Set the background color here
                 ),
                 onPressed: saveFile,
                 child: Text(
-                  ' pdf تـحـويـل إلـى  ',
+                  ' pdf',
                   style: TextStyle(
                       fontFamily: 'myfont',
                       fontSize: 15,
                       fontWeight: FontWeight.bold,
                       color: primaryLightColor),
                 ),
-              )
+              ),
+              Spacer(),
             ],
           )),
       body: SingleChildScrollView(

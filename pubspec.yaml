@@ -49,9 +49,6 @@ dependencies:
   fl_chart: ^0.55.2
   flutter_rating_bar: ^4.0.0
   pdf: ^3.10.7
-  google_fonts: ^6.1.0
-  document_file_save_plus: ^2.0.0
-  android_path_provider: ^0.3.0
 
  
 

@@ -47,6 +47,8 @@ class _chartThreeState extends State<chartThree> {
       'evaluation': '1.5',
     },
   ];
+  List<String> names = ['sarah', 'lamees', 'majd', 'waleed'];
+  List<int> evaluate = [10, 5, 4, 7];
 
   @override
   Widget build(BuildContext context) {
