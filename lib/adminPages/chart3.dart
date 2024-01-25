@@ -1,7 +1,11 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'dart:math';
+
 import 'package:fl_chart/fl_chart.dart';
 import 'package:software/theme.dart';
+import 'package:flutter_charts/flutter_charts.dart' as chart;
 
 class chartThree extends StatefulWidget {
   @override
@@ -17,38 +21,16 @@ class _chartThreeState extends State<chartThree> {
     'مـدى جـودة الأخـصـائـي فـي تـنـظـيـم الـجـلـسـات',
     'مـدى الـتوصـيـة بـهـذا الأخـصـائـي'
   ];
-  List<Map<String, String>> dynamicEvaluation = [
-    {
-      'name': 'sarah hinno',
-      'evaluation': '5',
-    },
-    {
-      'name': 'marah raed',
-      'evaluation': '6',
-    },
-    {
-      'name': 'waleed khaled ',
-      'evaluation': '2.5',
-    },
-    {
-      'name': 'nuha salem',
-      'evaluation': '5',
-    },
-    {
-      'name': 'nuha salem',
-      'evaluation': '1',
-    },
-    {
-      'name': 'nuha salem',
-      'evaluation': '3.5',
-    },
-    {
-      'name': 'nuha salem',
-      'evaluation': '1.5',
-    },
+
+  List<String> names = [
+    'sarah',
+    'lamees',
+    'majd',
+    'waleed',
+    'soso',
+    'marah',
   ];
-  List<String> names = ['sarah', 'lamees', 'majd', 'waleed'];
-  List<int> evaluate = [10, 5, 4, 7];
+  List<int> evaluate = [10, 5, 4, 7, 4, 8];
 
   @override
   Widget build(BuildContext context) {
@@ -116,7 +98,7 @@ class _chartThreeState extends State<chartThree> {
               ),
               SizedBox(height: 40),
               Container(
-                width: 320,
+                padding: EdgeInsets.all(20),
                 height: 500,
                 child: BarChart(BarChartData(
                   borderData: FlBorderData(
@@ -127,22 +109,44 @@ class _chartThreeState extends State<chartThree> {
                     bottom: BorderSide(width: 1),
                   )),
                   titlesData: FlTitlesData(
-                    rightTitles: AxisTitles(sideTitles: SideTitles()),
-                    topTitles: AxisTitles(sideTitles: SideTitles()),
-                  ),
-                  groupsSpace: 5,
+                      // rightTitles: (sideTitles: SideTitles()),
+                      //  topTitles: (sideTitles: SideTitles()),
+                      bottomTitles: SideTitles(
+                    showTitles: true,
+                    getTitles: (double value) {
+                      // Use names from the 'names' list for X-axis labels
+                      if (value >= 0 && value < names.length) {
+                        return names[value.toInt()];
+                      }
+                      return '';
+                    },
+                    interval: 1,
+                    margin: 5,
+                    reservedSize: 20,
+                    rotateAngle: 55,
+                  )),
+
+                  //       sideTitles:
+                  //       (value, meta) {
+                  //   defaultGetTitle(value, meta) {
+                  //     if (value >= 0 && value < names.length) {
+                  //       return names[value.toInt()];
+                  //     }
+                  //   }
+                  // },
+                  groupsSpace: 10,
+
                   barGroups: List.generate(
-                    dynamicEvaluation.length,
+                    names.length,
                     (index) => BarChartGroupData(
                       x: index,
                       barRods: [
                         BarChartRodData(
-                          toY: double.parse(
-                              dynamicEvaluation[index]['evaluation'] ?? '0'),
-                          width: 20,
-                          borderRadius: BorderRadius.all(Radius.zero),
-                          color: const Color.fromARGB(255, 241, 195, 54),
-                        ),
+                            y: evaluate[index].toDouble(),
+                            width: 20,
+                            borderRadius: BorderRadius.all(Radius.zero),
+                            colors: [Color.fromARGB(255, 241, 195, 54)],
+                            borderSide: BorderSide(strokeAlign: 10)),
                       ],
                     ),
                   ),

@@ -38,13 +38,20 @@ class _chartOneState extends State<chartOne> {
     'ســلــوكــي',
     'وظــيــفــي',
   ];
-
+ List<String> level = [
+    'الفترة الأولى',
+    'الفترة الثانية',
+    'الفترة الثالثة',
+    'الفترة الرابعة',
+    'الفترة الخامسة',
+    
+  ];
   final List<List<int>> evaluationList = [
-    [10, 2, 3, 4, 5, 2],
-    [4, 5, 6, 2, 8, 1],
-    [7, 8, 9, 4, 2, 7],
-    [4, 3, 8, 6, 2, 1],
-    [7, 4, 9, 5, 7, 2],
+    [2, 4, 6, 8, 10, 12],
+    [1, 3, 5, 7, 9, 11],
+    [1, 2, 3, 4, 5, 7],
+    [2, 3, 5, 8, 8, 9],
+    [1, 4, 5 ,7, 7, 9],
   ];
   List<Color> lineColors = [
     Colors.red,
@@ -62,12 +69,13 @@ class _chartOneState extends State<chartOne> {
       for (int j = 0; j < evaluationList[i].length; j++) {
         spots.add(FlSpot(j.toDouble(), evaluationList[i][j].toDouble()));
       }
-
+      var s = lineColors[i];
       LineChartBarData lineChartBarData = LineChartBarData(
         spots: spots,
         isCurved: false,
         barWidth: 3,
-        color: lineColors[i],
+        colors: [s],
+        // colors: [Color.fromARGB(255, 241, 195, 54)],
       );
 
       lineBarsData.add(lineChartBarData);
@@ -197,18 +205,29 @@ class _chartOneState extends State<chartOne> {
                   child: LineChart(
                     LineChartData(
                       titlesData: FlTitlesData(
-                        rightTitles: AxisTitles(sideTitles: SideTitles()),
-                        topTitles: AxisTitles(sideTitles: SideTitles()),
-                        leftTitles: AxisTitles(sideTitles: SideTitles()),
-                        
-                        // bottomTitles: AxisTitles(sideTitles(min:1,max:12))
-                      ),
+                      // rightTitles: (sideTitles: SideTitles()),
+                      //  topTitles: (sideTitles: SideTitles()),
+                      
+                      bottomTitles: SideTitles(
+                    showTitles: true,
+                    getTitles: (double value) {
+                      // Use names from the 'names' list for X-axis labels
+                      if (value >= 0 && value < level.length) {
+                        return level[value.toInt()];
+                      }
+                      return '';
+                    },
+                    interval: 1,
+                    margin: 5,
+                    reservedSize: 30,
+                    rotateAngle: 55,
+                  )),
                       borderData: FlBorderData(show: false),
                       lineBarsData: generateLineBarsData(),
                     ),
-                    
                   )),
             ),
+             SizedBox(height: 40),
             Visibility(
                 visible: isVisible,
                 child: Container(
