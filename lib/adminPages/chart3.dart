@@ -146,7 +146,8 @@ class _chartThreeState extends State<chartThree> {
                             width: 20,
                             borderRadius: BorderRadius.all(Radius.zero),
                             colors: [Color.fromARGB(255, 241, 195, 54)],
-                            borderSide: BorderSide(strokeAlign: 10)),
+                         //   borderSide: BorderSide(strokeAlign: 10)
+                            ),
                       ],
                     ),
                   ),
